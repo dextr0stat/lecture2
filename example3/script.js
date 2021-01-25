@@ -16,9 +16,10 @@ function init() {
 
     // create a scene and a camera
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(1,1,1)
+    scene.background = new THREE.Color(0,0,0)
     camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-    camera.position.y = - 100
+    camera.position.y = - 75
+    // camera.position.z = 100
 
     // create the renderer and add it to the html
     renderer = new THREE.WebGLRenderer( { antialias: true } )
@@ -38,7 +39,7 @@ function init() {
     const loader = new Rhino3dmLoader()
     loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.13.0/' )
 
-    loader.load( 'sphere.3dm', function ( object ) {
+    loader.load( 'HYPR 00X.3dm', function ( object ) {
 
         document.getElementById('loader').remove()
         scene.add( object )
@@ -79,14 +80,14 @@ function onClick( event ) {
         const object = intersects[0].object
         console.log(object) // debug
 
-        object.material.color.set( 'yellow' )
+        object.material.color.set( 'orange' )
 
         // get user strings
         let data, count
         if (object.userData.attributes !== undefined) {
             data = object.userData.attributes.userStrings
         } else {
-            // breps store user strings differently...
+            // breps st5tore user strings differently...
             data = object.parent.userData.attributes.userStrings
         }
 
